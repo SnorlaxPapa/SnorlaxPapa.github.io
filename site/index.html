@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rongyang Ye — Computer Science &amp; ML Systems</title>
+  <meta name="description" content="Rongyang Ye is a computer science student at UCLA building efficient machine learning systems, GPU kernels, and practical software.">
+  <meta name="theme-color" content="#fbfcfe">
+  <meta property="og:title" content="Rongyang Ye — Computer Science & ML Systems">
+  <meta property="og:description" content="Selected projects in ML inference, GPU programming, and computer vision.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%232849d8'/%3E%3Ctext x='20' y='27' font-size='22' font-family='Arial,sans-serif' font-weight='700' fill='white' text-anchor='middle'%3ERY%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a href="#" class="wordmark" aria-label="Rongyang Ye, home">ry<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="resume-link" href="/Rongyang_Ye.pdf" target="_blank" rel="noopener">Resume <span class="file-label">PDF</span></a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="intro-title">
+      <div class="eyebrow"><span>Computer science at UCLA</span><span>Class of 2030</span></div>
+      <div class="hero-identity">
+        <h1 id="intro-title">Rongyang Ye<span>.</span></h1>
+        <img class="portrait" src="/headshot.jpeg" alt="Rongyang Ye smiling" width="387" height="441" fetchpriority="high">
+      </div>
+      <div class="hero-bottom">
+        <p class="intro">I build efficient AI systems,<br class="desktop-break"> from GPU kernels to inference engines.</p>
+        <div class="hero-links"><a class="button primary" href="#work">Explore my work</a><a class="text-link" href="https://github.com/SnorlaxPapa" target="_blank" rel="noopener">GitHub</a></div>
+      </div>
+      <div class="focus-line"><span>ML inference</span><span>GPU programming</span><span>Computer vision</span></div>
+    </section>
+
+    <section class="work-section wrap" id="work" aria-labelledby="work-title">
+      <div class="section-heading"><h2 id="work-title">Selected work</h2><span class="mono">01—04</span></div>
+      <article class="project featured">
+        <div class="project-copy">
+          <p class="project-kicker"><span class="mono">01</span> ML SYSTEMS</p>
+          <h3>Mini-vLLM<br>Inference Engine</h3>
+          <p>A PyTorch runtime for Qwen2.5-3B-Instruct, built to make language-model inference faster and more memory efficient.</p>
+          <div class="tags"><span>PyTorch</span><span>Triton</span><span>Hugging Face</span></div>
+          <div class="project-actions"><a class="text-link" href="https://github.com/SnorlaxPapa/tiny-vllm" target="_blank" rel="noopener">View on GitHub</a></div>
+        </div>
+        <div class="benchmark">
+          <p class="mono panel-label">INFERENCE / NVIDIA A100</p>
+          <div class="big-metric">2.8<span>k</span></div>
+          <p class="metric-unit">output tokens / second</p>
+          <div class="benchmark-bottom"><p>Up to <strong>3–7× faster</strong> than<br>Hugging Face Transformers</p><span class="metric-note">Reported project benchmarks</span></div>
+        </div>
+        <details class="project-detail"><summary>Inside the build <span aria-hidden="true">+</span></summary><div class="detail-content"><p>Iteration-level scheduling, chunked prefill, hash-based prefix caching, and a paged KV cache keep inference moving. CUDA graph capture and replay accelerate decoding.</p><p>I reimplemented the model in PyTorch, added a meta-device Safetensors loader with fused QKV and SwiGLU weights, and integrated FlashAttention-2. In project benchmarks, throughput was within 10% of vLLM.</p></div></details>
+      </article>
+      <div class="project-grid">
+        <article class="project">
+          <div class="project-copy">
+            <p class="project-kicker"><span class="mono">02</span> GPU PROGRAMMING</p>
+            <h3>Custom Triton Kernels</h3>
+            <p>Softmax, Layer Normalization, and FlashAttention-2 kernels, implemented in Triton for both forward and backward passes.</p>
+            <div class="tags"><span>Triton</span><span>GPU optimization</span></div>
+            <div class="small-metric"><strong>1.5×</strong><span>peak backward speedup vs. torch.compile on an RTX 4080</span></div>
+            <div class="project-actions"><a class="text-link" href="https://github.com/SnorlaxPapa/triton-kernels-custom" target="_blank" rel="noopener">View on GitHub</a></div>
+          </div>
+          <details class="project-detail"><summary>Inside the build <span aria-hidden="true">+</span></summary><div class="detail-content"><p>Implemented causal masking, fused gradient computation, and staged parameter-gradient accumulation.</p><p>On an NVIDIA RTX 4080, the kernels matched torch.compile forward throughput and achieved up to 1.5× higher backward throughput in project benchmarks.</p></div></details>
+        </article>
+        <article class="project">
+          <div class="project-copy">
+            <p class="project-kicker"><span class="mono">03</span> COMPUTER VISION</p>
+            <h3>Recyclable Object Detection</h3>
+            <p>A compact computer vision model that identifies recyclable materials and runs directly on a Raspberry Pi 4.</p>
+            <div class="tags"><span>YOLOv8n</span><span>Roboflow</span><span>ONNX Runtime</span></div>
+            <div class="small-metric"><strong>20k</strong><span>curated images for a model achieving 0.60 mAP@50:95 on the test set</span></div>
+          </div>
+          <details class="project-detail"><summary>Inside the build <span aria-hidden="true">+</span></summary><div class="detail-content"><p>Curated, cleaned, and augmented a 20,000-image dataset from Roboflow Universe and Kaggle, then fine-tuned YOLOv8n with Ultralytics.</p><p>Quantized and deployed the model with ONNX Runtime on a Raspberry Pi 4, achieving 2 FPS of on-device inference.</p></div></details>
+        </article>
+      </div>
+      <article class="project ongoing" aria-labelledby="ongoing-title">
+        <div class="ongoing-heading"><p class="project-kicker"><span class="mono">04</span> DISTRIBUTED SYSTEMS</p><span class="progress-label">In progress</span></div>
+        <h3 id="ongoing-title">Distributed Training <span class="title-separator">·</span> DeepSeek-V3</h3>
+        <p>I’m working on distributed training using the DeepSeek-V3 architecture.</p>
+        <div class="tags"><span>Distributed training</span><span>DeepSeek-V3</span></div>
+      </article>
+    </section>
+    <section id="about" class="about-section" aria-labelledby="about-title">
+      <div class="wrap about-layout">
+        <div><p class="section-label">A little about me</p><h2 id="about-title" class="about-title">Curiosity,<br>put into practice.</h2></div>
+        <div>
+          <p class="bio">I’m a computer science student at UCLA, focused on making machine learning systems more efficient. My projects span inference runtimes, GPU kernels, and computer vision on small devices.</p>
+          <div class="journey">
+            <article class="journey-item">
+              <div class="journey-top"><h3>University of California, Los Angeles</h3><span class="journey-date">Expected June 2030</span></div>
+              <p>B.S. in Computer Science</p>
+            </article>
+            <article class="journey-item">
+              <div class="journey-top"><h3>Singapore Armed Forces</h3><span class="journey-date">Jan 2024 — Dec 2025</span></div>
+              <p class="journey-role">Administrative In-Charge</p>
+              <p>I built data-validation workflows and dashboards for administrative data covering 200+ personnel, reducing manual processing by approximately 90%. Awarded the Commanding Officer’s coin for digitalization efforts.</p>
+            </article>
+          </div>
+          <div class="skill-groups">
+            <div><h3>Languages &amp; tools</h3><p>Python · JavaScript · Git<br>Linux · Docker · Excel</p></div>
+            <div><h3>ML stack</h3><p>PyTorch · Triton · vLLM<br>Hugging Face · Ultralytics</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="contact-section wrap" aria-labelledby="contact-title">
+      <div class="contact-layout">
+        <div><p class="section-label">Get in touch</p><h2 id="contact-title">Let’s connect.</h2><a class="email" href="mailto:yerongyang@g.ucla.edu">yerongyang@g.ucla.edu</a></div>
+        <div class="contact-secondary"><div class="social-links"><a class="text-link" href="https://github.com/SnorlaxPapa" target="_blank" rel="noopener">GitHub</a><a class="text-link" href="https://www.linkedin.com/in/rongyang-ye-272a01367/" target="_blank" rel="noopener">LinkedIn</a></div><button class="copy-button" type="button" data-copy-email>Copy email</button></div>
+      </div>
+      <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><a class="wordmark" href="#" aria-label="Back to top">ry<span>.</span></a><span>Rongyang Ye</span><a href="/Rongyang_Ye.pdf" download="Rongyang_Ye_Resume.pdf">Download resume</a></footer>
+  <script src="/script.js" defer></script>
+</body>
+</html>

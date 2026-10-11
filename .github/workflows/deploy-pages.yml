@@ -17,25 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.28.2
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
-      - run: pnpm install --frozen-lockfile
-      - name: Build static website
-        run: pnpm build
-        env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_TELEMETRY_DISABLED: 1
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: out
+          path: site
 
   deploy:
     needs: build
